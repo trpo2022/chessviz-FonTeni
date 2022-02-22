@@ -76,7 +76,7 @@ int main () {
 				j++;
 		if (j != 1) {
 			printf("Неверно указана фигура!\n");
-			return;
+			return 0;
 		}
 			
 		for (i = 1; i < 9; i++) {
@@ -89,11 +89,11 @@ int main () {
 		}
 		if (x0 == 0 || y0 == 0) {
 			printf("Неверно написан номер клетки!\n");
-			return;
+			return 0;
 		}
 		if (str[0] != m[y0][x0]) {
 			printf("Фигура не соотвецтвует клетке!\n");
-			return;
+			return 0;
 		}
 		for (i = 1; i < 9; i++) {
 			if (m[i][0] == str[5]) {
@@ -106,7 +106,7 @@ int main () {
 		if (str[3] == '-') {
 			if (m[y1][x1] != 0) {
 				printf("Тип хода не соотвецтвует! '%c'\n", m[y1][x1]);
-				return;
+				return 0;
 			}
 			m[y1][x1] = m[y0][x0];
 			m[y0][x0] = 0;
@@ -116,7 +116,7 @@ int main () {
 					j++;
 			if (j != 1) {
 				printf("Неверный синтаксис хода!\n");
-				return;
+				return 0;
 			}
 			for (i = 0, j = 0, j2 = 0; i < 6; i++) {
 				if (str[0] == mf[i])
@@ -127,26 +127,26 @@ int main () {
 			}
 			if (j == j2) {
 				printf("Неверный синтаксис хода!\n");
-				return;
+				return 0;
 			}
 			m[y1][x1] = m[y0][x0];
 			m[y0][x0] = 0;
 		} else {
 			printf("Неверный синтаксис хода!\n");
-			return;
+			return 0;
 		}
 		if (x0 == x1 && y0 == y1) {
 			printf("Неверный синтаксис хода!\n");
-			return;
+			return 0;
 		}
 		if (str[0] == 'p' && str[3] == '-') {
 			if (x1 != x0 && y1 != y0 +1 && y1 != y0 + 2) {
 				printf("Неверный синтаксис хода для фигуры 'p'\n");
-				return;
+				return 0;
 			}
 			if (y1 == y0 + 2 && mp[x0] != 0){
 				printf("Попытка сделать двойной шаг 2 раз!\n");
-				return;
+				return 0;
 			}
 			if (y1 == y0 + 2 && mp[x0] == 0) {
 				mp[x0] = 1;
@@ -155,21 +155,21 @@ int main () {
 		if (str[0] == 'p' && str[0] == 'P' && str[3] == '+') {
 			if (y1 != y0 + 1 && y1 != y0 - 1) {
 				printf("Неверный синтаксис хода для фигуры 'p'\n");
-				return;
+				return 0;
 			}
 			if (x1 != x0 + 1 && x1 != x0 - 1) {
 				printf("Неверный синтаксис хода для фигуры 'p'\n");
-				return;
+				return 0;
 			}
 		}
 		if (str[0] == 'P' && str[3] == '-') {
 			if (x1 != x0 && y1 != y0 - 1 && y1 != y0 - 2) {
 				printf("Неверный синтаксис хода для фигуры 'p'\n");
-				return;
+				return 0;
 			}
 			if (y1 == y0 - 2 && mP[x0] != 0) {
 				printf("Попытка сделать двойной шаг 2 раз!\n");
-				return;
+				return 0;
 			}
 			if (y1 == y0 - 2 && mP[x0] == 0) {
 				mP[x0] = 1;
@@ -178,7 +178,7 @@ int main () {
 		if (str[0] == 'b' || str[0] == 'B') {
 			if (y0 - y1 != x0 - x1 && (y0 - y1) * -1 != x0 - x1 && y0 - y1 != (x0 - x1) * -1) {
 				printf("Неверный синтаксис хода для фигуры 'b' или 'B'!\n");
-				return;
+				return 0;
 			}
 			if (x1 - x0 != 1 || x1 - x0 != -1) {
 				x2 = -10;
@@ -192,7 +192,7 @@ int main () {
 						}
 						if (m[y2][x2] != 0) {
 							printf("'b' или 'B' не сможет перепрыгнуть '%c'  x0: %d  y0: %d", m[y2][x2], y2, x2);
-							return;
+							return 0;
 						}
 					}
 				} else {
@@ -205,7 +205,7 @@ int main () {
 						}
 						if (m[y2][x2] != 0) {
 							printf("'b' или 'B' не сможет перепрыгнуть '%c'  x0: %d  y0: %d", m[y2][x2], y2, x2);
-							return;
+							return 0;
 						}
 					}
 				}
@@ -216,17 +216,17 @@ int main () {
 				if (y0 - y1 == -1 || y0 - y1 == 1) {
 				} else {
 					printf("Неверный синтаксис хода фигуры 'n' или 'N'!\n");
-					return;
+					return 0;
 				}
 			} else if (x0 - x1 == -1 || x0 - x1 == 1) {
 				if (y0 - y1 == -2 || y0 - y1 == 2) {
 				} else {
 					printf("Неверный синтаксис хода фигуры 'n' или 'N'!\n");
-					return;
+					return 0;
 				}
 			} else {
 				printf("Неверный синтаксис хода фигуры 'n' или 'N'!\n");
-				return;
+				return 0;
 			}
 		}
 		if (str[0] == 'r' || str[0] == 'R') {
@@ -239,7 +239,7 @@ int main () {
 					}
 					if (m[y2][x0] != 0) {
 						printf("Неверный синтаксис хода фигуры 'r' или 'R'!\n");
-						return;
+						return 0;
 					}
 				}
 			} else if (y0 - y1 == 0 && (x0 - x1 != 1 || x0 - x1 != -1)) {
@@ -251,12 +251,12 @@ int main () {
 					}
 					if (m[y0][x2] != 0) {
 						printf("Неверный синтаксис хода фигуры 'r' или 'R'!\n");
-						return;
+						return 0;
 					}
 				}
 			} else {
 				printf("Неверный синтаксис хода фигуры 'r' или 'R'!\n");
-				return;
+				return 0;
 			}
 		}
 		if (str[0] == 'q' || str[0] == 'Q') {
@@ -273,7 +273,7 @@ int main () {
 							}
 							if (m[y2][x2] != 0) {
 								printf("'b' или 'B' не сможет перепрыгнуть '%c'  x0: %d  y0: %d", m[y2][x2], y2, x2);
-								return;
+								return 0;
 							}
 						}
 					} else {
@@ -286,7 +286,7 @@ int main () {
 							}
 							if (m[y2][x2] != 0) {
 								printf("'b' или 'B' не сможет перепрыгнуть '%c'  x0: %d  y0: %d", m[y2][x2], y2, x2);
-								return;
+								return 0;
 							}
 						}
 					}
@@ -300,7 +300,7 @@ int main () {
 					}
 					if (m[y2][x0] != 0) {
 						printf("Неверный синтаксис хода фигуры 'r' или 'R'!\n");
-						return;
+						return 0;
 					}
 				}
 			} else if (y0 - y1 == 0 && (x0 - x1 != 1 || x0 - x1 != -1)) {
@@ -312,22 +312,22 @@ int main () {
 					}
 					if (m[y0][x2] != 0) {
 						printf("Неверный синтаксис хода фигуры 'r' или 'R'!\n");
-						return;
+						return 0;
 					}
 				}
 			} else {
 				printf("Неверный синтаксис хода фигуры 'q' или 'Q'!\n");
-				return;
+				return 0;
 			}
 		}
 		if (str[0] == 'k' || str[0] == 'K') {
 			if (x0 - x1 != 1 && x0 - x1 != -1 && y0 - y1 != 1 && y0 - y1 != -1) {
 				printf("Неверный синтаксис хода фигуры 'k' или 'K'!\n");
-				return;
+				return 0;
 			}
 			if (x0 - x1 > 1 || x0 - x1 < -1 || y0 - y1 > 1 || y0 - y1 < -1) {
 				printf("Неверный синтаксис хода фигуры 'k' или 'K'!\n");
-				return;
+				return 0;
 			}
 		}
 		
@@ -335,4 +335,5 @@ int main () {
 		//printf("%d. ", t);
 		//scanf("%s", &str);
 	}
+	return 1;
 }
